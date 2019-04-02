@@ -1,0 +1,22 @@
+.info-title {
+    display: flex;
+    justify-content: center;
+    font-family: 'Rokkitt', serif;
+    text-decoration: underline;
+    margin-top: 1em
+}
+
+.col-sm {
+    text-align: center;
+    font-family: 'Rokkitt', serif;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+
+.date_picker {
+    width: 100%;
+    margin: 5px auto;
+    border: 3px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
