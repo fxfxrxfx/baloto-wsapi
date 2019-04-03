@@ -36,14 +36,14 @@ const getData = (res, year_url) => {
     rp(url.replace("@year", year_url))
         .then(function(html) {
             const numbersHTML = $(".numbers", html).text().replace(/\ /g, "").replace(/\n\n/, "").replace(/\n\n\n/g, "").replace(/súperbalota/g, ""); 
-            //console.log(numbersHTML);
-            //res.write(numbersHTML);
+            console.log(numbersHTML);
+            //  res.write(numbersHTML);
             const dates = $(".panel-title", html).text()
                 .replace(/\ /g, "")
                 .replace(/\n\n/g, "")
                 .split("\n");
             console.log("DATES", dates);
-            numbers = numbersHTML.split("\n").map(str => parseInt(str));
+            numbers = numbersHTML.split("\n").filter(Boolean).map(str => parseInt(str));
             console.log(numbers)
             index = 0;
             date = dates[0];
