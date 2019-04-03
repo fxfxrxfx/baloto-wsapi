@@ -26,13 +26,21 @@
                     Año inicio
                 </a>
                 <!-- AQUI JHOAN -->
+<<<<<<< HEAD
                 <input class="date_picker" type="date" id="start-calendar" value="21-12-2012">
+=======
+                <input class="date_picker" type="date" id="start-calendar" value="2012-12-21">
+>>>>>>> 7aadfcf05d326a538214886d51cd11d94b7d15a1
             </div>
             <div class="col-sm">
                 <a href="#" class="list-group-item list-group-item-action active">
                     Año fin
                 </a>
+<<<<<<< HEAD
                 <input class="date_picker" type="date" id="end-calendar">
+=======
+                <input class="date_picker" type="date" id="end-calendar" value="2019-01-01">
+>>>>>>> 7aadfcf05d326a538214886d51cd11d94b7d15a1
             </div>
         </div>
         <button type="button" id="start-button" class="btn btn-primary btn-lg btn-block">Calcular...</button>  
@@ -46,6 +54,7 @@
 
 
     <script>
+<<<<<<< HEAD
         let startDate, endDate;
         const start_calendar = document.getElementById("start-calendar"),
             end_calendar = document.getElementById("end-calendar");
@@ -56,15 +65,45 @@
         });
 
         start_calendar.addEventListener("change", (event) => {
+=======
+        const start_calendar = document.getElementById("start-calendar"),
+            end_calendar = document.getElementById("end-calendar");
+        let startDate = start_calendar.value,
+            endDate = end_calendar.value;
+        const content = document.getElementById("calc");
+
+        //Setting up listeners to calendars and button
+        start_calendar.addEventListener("change", (event) => {
+            console.log("Calendar changed: ", start_calendar.value);
+            startDate = start_calendar.value;
+        });
+
+        end_calendar.addEventListener("change", (event) => {
+            console.log("Calendar changed: ", end_calendar.value);
+>>>>>>> 7aadfcf05d326a538214886d51cd11d94b7d15a1
             endDate = end_calendar.value;
         });
 
 
         document.getElementById("start-button").addEventListener("click", event => {
+<<<<<<< HEAD
             if(!startDate | !endDate) {
                 alert("Por favor, seleccione fechas");
                 return;
             }
+=======
+            const url = new URL("http://localhost:8000/get")
+            const params = {
+                "start-date": startDate, 
+                "end-date": endDate
+            }
+            url.search = new URLSearchParams(params)
+            fetch(url)
+                .then(res => res.json())
+                .then(json => {
+                    content.innerHTML = JSON.stringify(json);
+                })
+>>>>>>> 7aadfcf05d326a538214886d51cd11d94b7d15a1
             console.log("Start: ", startDate, "End: ", endDate);
         })
     </script>

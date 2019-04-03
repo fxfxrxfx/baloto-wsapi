@@ -17,7 +17,13 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+<<<<<<< HEAD
     path('home/', include('home.urls')),
     path('admin/', admin.site.urls),
+=======
+    path('', include('home.urls')),
+    path('/get', include('home.urls')),
+    path('admin/', admin.site.urls)
+>>>>>>> 7aadfcf05d326a538214886d51cd11d94b7d15a1
 ]
 
