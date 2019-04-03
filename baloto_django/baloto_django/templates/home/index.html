@@ -61,6 +61,10 @@
 
 
         document.getElementById("start-button").addEventListener("click", event => {
+            if(!startDate | !endDate) {
+                alert("Por favor, seleccione fechas");
+                return;
+            }
             console.log("Start: ", startDate, "End: ", endDate);
         })
     </script>
