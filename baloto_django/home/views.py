@@ -6,6 +6,9 @@ from urllib.request import urlopen
 import json
 import datetime
 
+
+import numpy
+
 def index(request):
     return render(request, 'home/index.html')
 
@@ -24,22 +27,34 @@ def get_data(request):
 
     print("Start date: ", start_date, "End date: ", end_date)
     date_iter = start_date
-    cont = 50
-    url = "http://localhost:8080"
+    url = "https://baloto-wsapi.herokuapp.com"
     
     serialized_data = bytes()
     
     data = []
     while(date_iter < end_date):
-        cont = cont - 1
         date_iter = date_iter + datetime.timedelta(365 / 12) 
         url_fixed = "{0}/{1}/{2}".format(url, date_iter.year, date_iter.month)
-        print("URL", url_fixed)
+        print("Calling URL: ", url_fixed)
         serialized_data = urlopen(url_fixed).read()
         myjson = json.loads(serialized_data)
         key = str(date_iter.year) + "/" + str(date_iter.month)
-        data.append({key: myjson})
-        print(date_iter)
-    
+        data.append(myjson)
+        print("ACTUAL MONTH: ", date_iter)    
     print(data)
     return JsonResponse({"data": data})
+
+
+def get_stats(request):
+    if request.method == "POST":
+        body = get_body(request)
+        data = body["data"]
+        print(data)
+        mean = numpy.mean(data) 
+        sd = numpy.std(data)
+        return JsonResponse({"mean": mean, "sd": sd, "var": sd **2})
+
+def get_body(request):
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    return body
