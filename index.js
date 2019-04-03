@@ -92,4 +92,4 @@ http
           res.writeHead(405, headers);
           res.end(`${req.method} is not allowed for the request.`);
     })
-    .listen(8080)//the server object listens on port 8080
+    .listen(process.env.PORT || 3000)//the server object listens on port 8080
