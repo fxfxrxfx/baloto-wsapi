@@ -14,6 +14,7 @@
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <div class="info-title">
@@ -38,6 +39,9 @@
         <button type="button" id="start-button" class="btn btn-primary btn-lg btn-block">Calcular...</button>  
     </div>
     <div class="container" id="calc"> 
+
+    </div>
+    <div class="graphicont">
 
     </div>
 
@@ -78,6 +82,20 @@
                 })
             console.log("Start: ", startDate, "End: ", endDate);
         })
+
+        function graphic(data){
+            var x=[];
+            var t=[];
+            
+            var trace ={
+                number: x,
+                time:t,
+                mode:'lines+markers',
+                type:'scatter'
+            }
+            traces=trace;
+            Ploty.newPlot('graphicont',trace)
+        }
     </script>
 </body>
 </html>
